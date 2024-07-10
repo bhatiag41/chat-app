@@ -1,0 +1,16 @@
+@import"./Components/_user.scss";
+
+$liner-grad:linear-gradient(rgb(14, 13, 31), rgb(51, 69, 97) );
+.container{
+  background: $liner-grad;
+  width: 100vw;
+  height: 100vh;
+@include flex(space-between,center,column);
+  color: aliceblue;
+}
+.inner{
+  background-color: rgba(43, 44, 49, 0.247);
+  width:90%;
+  height: 90%;
+  align-self: center;
+}
