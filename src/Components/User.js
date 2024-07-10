@@ -8,7 +8,7 @@ const User = () => {
     <h2>Gaurav Bhatia</h2>
 </div>
 <div className='icons'>
-    <img src='./more.png'/>
+    <img src='./more.png' alt='more'/>
 
 
 </div>
