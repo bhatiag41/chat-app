@@ -7,10 +7,17 @@
         color: $purple3;
     }
 }
+::-webkit-scrollbar{
+    display: none;
+}
 .chatWindow {
-    @include flex(baseline, flex-end, column);
+    bottom: 0;
+
+    @include flex(flex-end, flex-end, column);
     // height: 100%;
     margin-right: 3rem;
+
+overflow-y: scroll;
 
 
 
@@ -35,7 +42,11 @@
 position:absolute;
 bottom:70px;
 left:0;
+input{
+    background-color: $purple1;
 }
+}
+
 .chatInput {
     position: absolute;
     bottom: 20px;
@@ -47,4 +58,7 @@ left:0;
     align-items: center;
     // z-index: 1;
     cursor: pointer;
+}
+.epr_-xuzz9z{
+    background-color: $purple2 !important;
 }

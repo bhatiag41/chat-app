@@ -125,12 +125,18 @@
   color: #734c9e;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .chatWindow {
+  bottom: 0;
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: flex-end;
   flex-direction: column;
   margin-right: 3rem;
+  overflow-y: scroll;
 }
 .chatWindow .senderMsg,
 .chatWindow .recieverMsg {
@@ -154,6 +160,9 @@
   bottom: 70px;
   left: 0;
 }
+.emojiPicker input {
+  background-color: #C9B6E4;
+}
 
 .chatInput {
   position: absolute;
@@ -164,6 +173,10 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+}
+
+.epr_-xuzz9z {
+  background-color: #BE9FE1 !important;
 }
 
 .container {

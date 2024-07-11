@@ -26,7 +26,7 @@ const [text,setText]= useState('');
 </div>
 <div className='emojiPicker'>
 
-<EmojiPicker open={open} onEmojiClick={handleEmoji}/>
+<EmojiPicker open={open} onEmojiClick={handleEmoji} style={{backgroundColor:"#BE9FE1"}}  pickerStyle={{ backgroundColor: '#BE9FE1' }}/>
 </div>
 <div className='chatInput'>
 <div className='searchbar'>
