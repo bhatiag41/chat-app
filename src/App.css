@@ -36,6 +36,11 @@
   flex-direction: column;
   max-width: 500px;
 }
+.list hr {
+  width: 90%;
+  border: 1px solid #BE9FE1;
+  border-radius: 50%;
+}
 
 .searchbar {
   margin: 10px 0;
@@ -114,6 +119,10 @@
 .chat {
   position: relative;
   height: 100%;
+}
+
+.window h2 {
+  color: #734c9e;
 }
 
 .chatWindow {

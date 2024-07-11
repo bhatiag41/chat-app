@@ -6,7 +6,7 @@ const chat = () => {
   return (
 <div className='chat'>
 <div className='header'>
-<div className='user'>
+<div className='user window'>
     <img src='./sa.JPG' alt='user'/>
     <h2>Gaurav Bhatia</h2>
 </div>

@@ -1,9 +1,15 @@
 .list{
     @include flex(center,center,column);
     max-width: 500px;
+
     @if(width==500px){
         align-items:flex-start;
         // margin-left: 20px;
+    }
+    hr{
+        width: 90%;
+        border: 1px solid $purple2;
+        border-radius: 50%;
     }
 }
 .searchbar{
@@ -52,6 +58,7 @@ color: $purple2;
     padding: 15px 0;
     // border-radius: 30px;
     position: relative;
+   
     img{
         width: 50px;
         border-radius: 50%;

@@ -2,6 +2,11 @@
     position: relative;
     height: 100%;
 }
+.window{
+    h2{
+        color: $purple3;
+    }
+}
 .chatWindow {
     @include flex(baseline, flex-end, column);
     // height: 100%;

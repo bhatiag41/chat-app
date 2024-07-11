@@ -15,8 +15,17 @@ const ChatList = () => {
               <div className='messagePreview'>Hello bro, how are you</div>
             </div>
             <div className='timeList'>01:20 pm</div>
-
           </div>
+<hr/>
+          <div className='chats'>
+            <img src='./sa.JPG' alt='profiles'/>
+            <div className='chatText'>
+              <div className='name'>Gaurav Bhatia</div>
+              <div className='messagePreview'>Hello bro, how are you</div>
+            </div>
+            <div className='timeList'>01:20 pm</div>
+          </div>
+<hr/>
       </div>
     </div>
   )
