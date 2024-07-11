@@ -1,8 +1,15 @@
-import React from 'react';
+import React,{useState} from 'react';
+import EmojiPicker from 'emoji-picker-react';
 // import './Chat.scss';
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { IoSend } from "react-icons/io5";
-const chat = () => {
+const Chat = () => {
+  const [open,setOpen] = useState(false);
+const [text,setText]= useState('');
+  const handleEmoji=e=>{
+    setText((prev=>prev+e.emoji))
+    setOpen(false)
+  }
   return (
 <div className='chat'>
 <div className='header'>
@@ -17,11 +24,15 @@ const chat = () => {
 <div className='recieverMsg'>Hi</div>
 <div className='senderMsg'>Hello</div>
 </div>
+<div className='emojiPicker'>
+
+<EmojiPicker open={open} onEmojiClick={handleEmoji}/>
+</div>
 <div className='chatInput'>
 <div className='searchbar'>
-<MdOutlineEmojiEmotions/>
+  <MdOutlineEmojiEmotions onClick={()=>setOpen((prev)=> !prev)}/>
 
-<input type='text' placeholder='Enter your Message'></input>
+<input type='text' placeholder='Enter your Message'value={text} onChange={(e)=>setText(e.target.value)}/>
 <IoSend/>
 </div>
 
@@ -31,4 +42,4 @@ const chat = () => {
   );
 }
 
-export default chat;
+export default Chat;
