@@ -149,6 +149,12 @@
   align-self: flex-end;
 }
 
+.emojiPicker {
+  position: absolute;
+  bottom: 70px;
+  left: 0;
+}
+
 .chatInput {
   position: absolute;
   bottom: 20px;
@@ -157,6 +163,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
 .container {

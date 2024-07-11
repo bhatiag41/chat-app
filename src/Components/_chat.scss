@@ -31,6 +31,11 @@
         align-self: flex-end;
     }
 }
+.emojiPicker{
+position:absolute;
+bottom:70px;
+left:0;
+}
 .chatInput {
     position: absolute;
     bottom: 20px;
@@ -41,9 +46,5 @@
     justify-content: space-between;
     align-items: center;
     // z-index: 1;
-}
-.emojiPicker{
-position:absolute;
-bottom:50px;
-left:0;
+    cursor: pointer;
 }
