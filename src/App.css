@@ -63,11 +63,12 @@
   background: none;
   padding: 15px 0;
   font-size: large;
+  width: 100%;
 }
 .searchbar svg {
   color: #734c9e;
   font-size: 2rem;
-  margin-left: 10px;
+  margin: 0 10px;
 }
 
 .chats {
@@ -78,6 +79,7 @@
   gap: 10px;
   width: 100%;
   background-color: #E1CCEC;
+  overflow-x: hidden;
   color: #BE9FE1;
   padding: 15px 0;
   position: relative;
@@ -92,11 +94,13 @@
   align-items: flex-start;
   justify-content: space-around;
   flex-direction: column;
+  overflow-x: hidden;
 }
 .chats .chatText .name {
   font-weight: 700;
   font-size: 1em;
   color: #734c9e;
+  overflow-x: hidden;
 }
 .chats .timeList {
   position: absolute;
@@ -104,6 +108,46 @@
   top: 10%;
   color: #BE9FE1;
   text-wrap: nowrap;
+  font-size: 14px;
+}
+
+.chat {
+  position: relative;
+  height: 100%;
+}
+
+.chatWindow {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  flex-direction: column;
+  margin-right: 3rem;
+}
+.chatWindow .senderMsg,
+.chatWindow .recieverMsg {
+  background-color: #734c9e;
+  padding: 10px 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 20px;
+  margin-bottom: 0.3rem;
+  position: relative;
+}
+.chatWindow .senderMsg {
+  align-self: flex-start;
+}
+.chatWindow .recieverMsg {
+  align-self: flex-end;
+}
+
+.chatInput {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .container {
@@ -118,9 +162,21 @@
 }
 
 .inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 0px;
   background-color: #E1CCEC;
   width: 100%;
   height: 90%;
-  align-self: center;
   border-radius: 20px;
+}
+
+.left {
+  grid-area: 1/1/2/2;
+}
+
+.right {
+  grid-area: 1/2/2/3;
 }/*# sourceMappingURL=App.css.map */

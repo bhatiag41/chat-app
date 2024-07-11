@@ -1,0 +1,39 @@
+.chat {
+    position: relative;
+    height: 100%;
+}
+.chatWindow {
+    @include flex(baseline, flex-end, column);
+    // height: 100%;
+    margin-right: 3rem;
+
+
+
+    // overflow-x: hidden;
+    .senderMsg,
+    .recieverMsg {
+        background-color: $purple3;
+        padding: 10px 20px;
+        width: fit-content;
+        border-radius: 20px;
+        margin-bottom: 0.3rem;
+        position: relative;
+    }
+    .senderMsg {
+        align-self: flex-start;
+    }
+    .recieverMsg {
+        align-self: flex-end;
+    }
+}
+.chatInput {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    // padding: 1rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+    // z-index: 1;
+}

@@ -10,9 +10,14 @@ const App = () => {
     <div className='container'>
           <User/>
       <div className='inner'>
-  
+  <div className='left'>
+
           <ChatList/>
-       
+  </div>
+       <div className='right'>
+
+<Chat/>
+       </div>
 
       </div>
     </div>
