@@ -1,6 +1,6 @@
 .chat {
     position: relative;
-    height: 100%;
+    height: 90%;
 }
 .window{
     h2{
@@ -8,16 +8,15 @@
     }
 }
 ::-webkit-scrollbar{
-    display: none;
+    // display: none;
 }
 .chatWindow {
-    bottom: 0;
-
-    @include flex(flex-end, flex-end, column);
-    // height: 100%;
+    // bottom: 0;
+    @include flex(baseline, flex-end, column);
+    overflow-y: scroll;
+    height: 60%; // or a fixed height like 80vh or 500px
     margin-right: 3rem;
-
-overflow-y: scroll;
+    // overflow-y: auto;
 
 
 
@@ -29,7 +28,7 @@ overflow-y: scroll;
         width: fit-content;
         border-radius: 20px;
         margin-bottom: 0.3rem;
-        position: relative;
+        // position: relative;
     }
     .senderMsg {
         align-self: flex-start;

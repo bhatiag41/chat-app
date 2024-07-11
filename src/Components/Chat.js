@@ -23,6 +23,18 @@ const [text,setText]= useState('');
 <div className='recieverMsg'>Hi</div>
 <div className='recieverMsg'>Hi</div>
 <div className='senderMsg'>Hello</div>
+<div className='recieverMsg'>Hi</div>
+<div className='senderMsg'>Hello</div>
+<div className='recieverMsg'>Hi</div>
+<div className='senderMsg'>Hello</div>
+<div className='recieverMsg'>Hi</div>
+<div className='senderMsg'>Hello</div>
+<div className='recieverMsg'>Hi</div>
+<div className='senderMsg'>Hello</div>
+<div className='recieverMsg'>Hi</div>
+<div className='senderMsg'>Hello</div>
+<div className='recieverMsg'>Hi</div>
+<div className='senderMsg'>Hello</div>
 </div>
 <div className='emojiPicker'>
 

@@ -118,25 +118,21 @@
 
 .chat {
   position: relative;
-  height: 100%;
+  height: 90%;
 }
 
 .window h2 {
   color: #734c9e;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 .chatWindow {
-  bottom: 0;
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   justify-content: flex-end;
   flex-direction: column;
-  margin-right: 3rem;
   overflow-y: scroll;
+  height: 60%;
+  margin-right: 3rem;
 }
 .chatWindow .senderMsg,
 .chatWindow .recieverMsg {
@@ -146,7 +142,6 @@
   width: fit-content;
   border-radius: 20px;
   margin-bottom: 0.3rem;
-  position: relative;
 }
 .chatWindow .senderMsg {
   align-self: flex-start;
