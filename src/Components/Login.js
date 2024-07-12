@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { auth, storage } from '../Firebase.js';
+import { auth, storage, db } from '../Firebase.js';
+import { useNavigate } from 'react-router-dom';
+import { doc, setDoc } from 'firebase/firestore';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +18,7 @@ const Login = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    setRegister((prev) => !prev);
+    setRegister(!register);
   };
 
   const handleAvatar = (e) => {
@@ -30,40 +33,45 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (register) {
-      // Handle registration
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Upload photo to Firebase Storage
+        let photoURL = '';
         if (avatar.file) {
           const storageRef = ref(storage, `users/${user.uid}/profile.jpg`);
           await uploadBytes(storageRef, avatar.file);
-          const photoURL = await getDownloadURL(storageRef);
+          photoURL = await getDownloadURL(storageRef);
 
-          // Update user profile with username and photo URL
           await updateProfile(user, {
             displayName: username,
             photoURL: photoURL
           });
         }
 
+        await setDoc(doc(db, 'users', user.uid), {
+          uid: user.uid,
+          name: username,
+          email: user.email,
+          photoURL: photoURL
+        });
+
         console.log('User registered with:', user);
+        navigate('/');
       } catch (error) {
         console.error('Error registering user:', error);
       }
     } else {
-      // Handle login
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         console.log('User logged in with:', user);
+        navigate('/');
       } catch (error) {
         console.error('Error logging in user:', error);
       }
     }
   };
-
   return (
     <>
       <form action="" className="form_main" onSubmit={handleSubmit}>
