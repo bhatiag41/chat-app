@@ -11,7 +11,7 @@ $extra:#EECEB9;
 
 $liner-grad:linear-gradient($purple2, $purple1 );
 .container{
-  background: $liner-grad;
+  background: $purple1;
   width: 100vw;
   height: 100vh;
 @include flex(space-between,center,column);

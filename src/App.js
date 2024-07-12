@@ -1,27 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './Firebase';
 import "./App.css"
-import List  from './Components/List'
 import Chat from './Components/Chat'
-import Details from './Components/Details'
+
 import ChatList from './Components/ChatList'
 import User from './Components/User'
 import Login from './Components/Login'
 const App = () => {
-  const user = false;
+  const [user, setUser] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
   return (
     <div className='container'>
       {
         user?(
           <>
-          <User/>
+          <User user={user}/>
       <div className='inner'>
   <div className='left'>
 
-          <ChatList/>
+          <ChatList user={user}/>
   </div>
        <div className='right'>
 
-<Chat/>
+<Chat user={user}/>
        </div>
 
       </div>
