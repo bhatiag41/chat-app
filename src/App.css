@@ -36,7 +36,8 @@
   flex-direction: column;
   max-width: 500px;
 }
-.list hr {
+
+hr {
   width: 90%;
   border: 1px solid #BE9FE1;
   border-radius: 50%;
