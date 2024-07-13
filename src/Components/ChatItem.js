@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const ChatItem = ({ chat, fetchLatestMessage, currentUser }) => {
+const ChatItem = ({ chat, fetchLatestMessage, currentUser, fetchParticipantNames, fetchUserDetails }) => {
   const [latestMessage, setLatestMessage] = useState(null);
+  const [receiverDetails, setReceiverDetails] = useState(null);
 
   useEffect(() => {
     const getLatestMessage = async () => {
@@ -11,20 +12,25 @@ const ChatItem = ({ chat, fetchLatestMessage, currentUser }) => {
       }
     };
 
-    getLatestMessage();
-  }, [chat, fetchLatestMessage]);
+    const fetchReceiverDetails = async () => {
+      const participantIds = chat.participants.filter(id => id !== currentUser.uid); // Exclude current user
+      if (participantIds.length === 1) {
+        const receiverId = participantIds[0];
+        const userDetails = await fetchUserDetails(receiverId);
+        setReceiverDetails(userDetails);
+      }
+    };
 
-  // Ensure chat object and participants exist
-  const participants = chat && chat.participants ? chat.participants : [];
+    getLatestMessage();
+    fetchReceiverDetails();
+  }, [chat, currentUser.uid, fetchLatestMessage, fetchUserDetails]);
 
   return (
     <div className='chats'>
-      <img src='./sa.JPG' alt='profiles' />
+      <img src={receiverDetails?.photoURL || './default-avatar.jpg'} alt='profiles' />
       <div className='chatText'>
         <div className='name'>
-          {participants
-            .filter(participant => participant !== currentUser.uid)
-            .join(', ')}
+          {receiverDetails ? receiverDetails.name : 'Unknown'}
         </div>
         <div className='messagePreview'>
           {latestMessage ? latestMessage.content : 'No messages yet'}

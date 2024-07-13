@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { collection, addDoc, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { db } from '../Firebase';
 import EmojiPicker from 'emoji-picker-react';
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { IoSend } from "react-icons/io5";
 
-const Chat = ({ user, selectedChatId }) => {
+const Chat = ({ user, selectedChatId, receiver }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
-  const [open, setOpen] = useState(false);
-  const [receiver, setReceiver] = useState(null);
+  const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -26,27 +25,6 @@ const Chat = ({ user, selectedChatId }) => {
 
     fetchMessages();
   }, [selectedChatId]);
-
-  useEffect(() => {
-    const fetchReceiver = async () => {
-      if (selectedChatId && user) { // Ensure user is also defined
-        try {
-          const chatDoc = await collection(db, 'chats').doc(selectedChatId).get();
-          const participants = chatDoc.data()?.participants || [];
-          const receiverId = participants.find(id => id !== user.uid);
-
-          if (receiverId) {
-            const receiverDoc = await collection(db, 'users').doc(receiverId).get();
-            setReceiver(receiverDoc.data());
-          }
-        } catch (error) {
-          console.error('Error fetching receiver details:', error);
-        }
-      }
-    };
-
-    fetchReceiver();
-  }, [selectedChatId, user]);
 
   const sendMessage = async () => {
     try {
@@ -65,21 +43,17 @@ const Chat = ({ user, selectedChatId }) => {
     }
   };
 
-  const handleEmoji = (e) => {
-    setNewMessage((prev => prev + e.emoji));
-    setOpen(false);
+  const handleEmojiClick = (emoji) => {
+    setNewMessage(prevMessage => prevMessage + emoji);
+    setOpenEmojiPicker(false);
   };
-
-  if (!selectedChatId) {
-    return <div className="chat">Select a chat to start messaging</div>;
-  }
 
   return (
     <div className='chat'>
       <div className='header'>
-        <div className='user window'>
+        <div className='user'>
           <img src={receiver?.photoURL || './avatar.png'} alt='receiver' />
-          <h2>{receiver?.displayName || 'Chat'}</h2>
+          <h2>{receiver?.name || 'Chat'}</h2>
         </div>
       </div>
       <div className='messages'>
@@ -90,19 +64,22 @@ const Chat = ({ user, selectedChatId }) => {
         ))}
       </div>
       <div className='emojiPicker'>
-        <MdOutlineEmojiEmotions onClick={() => setOpen(prev => !prev)} />
-        <EmojiPicker open={open} onEmojiClick={handleEmoji} style={{ backgroundColor: "#BE9FE1" }} pickerStyle={{ backgroundColor: '#BE9FE1' }} />
+        <MdOutlineEmojiEmotions onClick={() => setOpenEmojiPicker(prev => !prev)} />
+        {openEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick} />}
       </div>
       <div className='chatInput'>
-        <div className='searchbar'>
-          <input type='text' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder='Enter your Message' />
-          <button onClick={sendMessage} style={{ border: "none", background: "transparent" }}>
-            <IoSend />
-          </button>
-        </div>
+        <input
+          type='text'
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          placeholder='Enter your message...'
+        />
+        <button onClick={sendMessage}>
+          <IoSend />
+        </button>
       </div>
     </div>
   );
-}
+};
 
 export default Chat;

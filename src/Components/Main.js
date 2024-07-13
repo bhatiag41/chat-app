@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../Firebase';
-import User from './User'
-import Chat from './Chat'
-import ChatList from './ChatList'
+import User from './User';
+import Chat from './Chat';
+import ChatList from './ChatList';
 
 const Main = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -13,36 +13,33 @@ const Main = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      console.log(user)
     });
     return () => unsubscribe();
   }, []);
-
+  
   const handleChatSelection = (chatId, user) => {
     setSelectedChatId(chatId);
     setReceiver(user);
+    console.log(user);
   };
 
   return (
     <>
-                  <User/>
+      <User currentUser={currentUser} />
       <div className='inner'>
-  <div className='left'>
-
-          <ChatList currentUser={currentUser} onChatSelect={handleChatSelection}/>
-  </div>
-       <div className='right'>
-
-       {selectedChatId ? (
-          <Chat user={currentUser} selectedChatId={selectedChatId} receiver={receiver} />
-        ) : (
-          <div>Select a chat to start messaging</div>
-        )}
-       </div>
-
+        <div className='left'>
+          <ChatList currentUser={currentUser} onChatSelect={handleChatSelection} />
+        </div>
+        <div className='right'>
+          {selectedChatId ? (
+            <Chat user={currentUser} selectedChatId={selectedChatId} receiver={receiver} />
+          ) : (
+            <div>Select a chat to start messaging</div>
+          )}
+        </div>
       </div>
-   </>
-  )
-}
+    </>
+  );
+};
 
-export default Main
+export default Main;
