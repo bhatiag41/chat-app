@@ -27,7 +27,10 @@ const ChatItem = ({ chat, fetchLatestMessage, currentUser, fetchParticipantNames
 
   return (
     <div className='chats'>
+      <div className="user">
+
       <img src={receiverDetails?.photoURL || './default-avatar.jpg'} alt='profiles' />
+      </div>
       <div className='chatText'>
         <div className='name'>
           {receiverDetails ? receiverDetails.name : 'Unknown'}

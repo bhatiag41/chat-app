@@ -56,6 +56,8 @@ const Chat = ({ user, selectedChatId, receiver }) => {
           <h2>{receiver?.name || 'Chat'}</h2>
         </div>
       </div>
+      <div className='window'>
+
       <div className='messages'>
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.userId === user.uid ? 'own' : 'other'}`}>
@@ -63,20 +65,25 @@ const Chat = ({ user, selectedChatId, receiver }) => {
           </div>
         ))}
       </div>
+      </div>
       <div className='emojiPicker'>
-        <MdOutlineEmojiEmotions onClick={() => setOpenEmojiPicker(prev => !prev)} />
         {openEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick} />}
       </div>
-      <div className='chatInput'>
+      <div    className='chatInput'>
+
+      <div className='searchbar'>
+        <MdOutlineEmojiEmotions onClick={() => setOpenEmojiPicker(prev => !prev)} />
         <input
           type='text'
+          
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder='Enter your message...'
-        />
-        <button onClick={sendMessage}>
+          />
+        <button style={{background:"transparent",border:"none"}} onClick={sendMessage}>
           <IoSend />
         </button>
+          </div>
       </div>
     </div>
   );
