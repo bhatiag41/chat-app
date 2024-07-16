@@ -23,3 +23,8 @@ yarn-error.log*
 
 # Firebase configuration
 Firebase.js
+firebase.json
+.firebaserc
+firestore.indexes.json
+firestore.rules
+./.firebase
