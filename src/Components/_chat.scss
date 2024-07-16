@@ -1,88 +1,76 @@
 .chat {
     position: relative;
     height: 100%;
-}
-.header{
+  }
+  
+  .header {
     display: flex;
     justify-content: space-between;
-    margin-right: 7rem ;
+    margin: 0 30px;
     align-items: center;
     color: $purple3;
-}
-// .window{
-//     h2{
-//         color: $purple3;
-//     }
-// }
- .deleteBtn {
+  }
+  
+  .deleteBtn {
     background: none;
     border: none;
-    cursor: pointer;
     font-size: x-large;
     color: $purple3;
   }
-::-webkit-scrollbar{
-    // display: none;
-}
-.chatWindow {
-    // bottom: 0;
-    @include flex(baseline, flex-end, column);
-    overflow-y: scroll;
-    flex: 1;
-
-    overflow-y: auto;
-    height: 70%; // or a fixed height like 80vh or 500px
-    margin-right: 7rem;
-    // overflow-y: auto;
-
-
-
-    // overflow-x: hidden;
+  
+  ::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar */
+  }
+  
+  .chatWindow {
+    height: 70%; /* Set a fixed height or use '70vh' for 70% of the viewport height */
+    overflow-y: auto; /* Enable scrolling */
+    margin: 0 30px;
+    @include flex(flex-start,flex-start,column);
+    padding: 10px;
+    gap: 10px;
+  
     .senderMsg,
     .recieverMsg {
-        background-color: $purple3;
+        color: $white1;
         padding: 10px 20px;
-        width: fit-content;
         border-radius: 20px;
         margin-bottom: 0.3rem;
-        // position: relative;
-        max-width: 80%;
-        margin: 5px 0;
+        max-width: 60%;
         word-wrap: break-word;
+  
+      
     }
-
-
-
+  
     .senderMsg {
         align-self: flex-end;
+        background-color: $purple3;
+ 
+      }
+    
+      .recieverMsg {
+        align-self: flex-start;
+        background-color: $purple3;
+      }
+    
+  }
+  
+  .emojiPicker {
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    input {
+      background-color: $purple1; /* Adjust background color for the emoji picker input */
     }
-    .recieverMsg {
-        
-        align-self: flex-start;  
-    }
-}
-
-.emojiPicker{
-position:absolute;
-bottom:70px;
-left:0;
-input{
-    background-color: $purple1;
-}
-}
-
-.chatInput {
+  }
+  
+  .chatInput {
     position: absolute;
     bottom: 20px;
     left: 0;
     width: 100%;
     display: flex;
-    // padding: 1rem 2rem;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    // z-index: 1;
-    cursor: pointer;
-}
-.epr_-xuzz9z{
-    background-color: $purple2 !important;
-}
+  }
+  

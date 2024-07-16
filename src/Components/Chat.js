@@ -82,7 +82,7 @@ const Chat = ({ user, selectedChatId, receiver, onDeleteChat }) => {
   
       </div>
       <div className='emojiPicker'>
-        {openEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick} />}
+        {openEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick}  style={{backgroundColor:"#BE9FE1"}}/>}
       </div>
       <div className='chatInput'>
         <div className='searchbar'>
@@ -92,6 +92,7 @@ const Chat = ({ user, selectedChatId, receiver, onDeleteChat }) => {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder='Enter your message...'
+
           />
           <button style={{ background: "transparent", border: "none" }} onClick={sendMessage}>
             <IoSend />

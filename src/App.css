@@ -90,6 +90,7 @@ hr {
   color: #BE9FE1;
   padding: 15px 0;
   position: relative;
+  cursor: pointer;
 }
 .chats img {
   width: 50px;
@@ -127,7 +128,7 @@ hr {
 .header {
   display: flex;
   justify-content: space-between;
-  margin-right: 7rem;
+  margin: 0 30px;
   align-items: center;
   color: #734c9e;
 }
@@ -135,39 +136,41 @@ hr {
 .deleteBtn {
   background: none;
   border: none;
-  cursor: pointer;
   font-size: x-large;
   color: #734c9e;
 }
 
+::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+
 .chatWindow {
+  height: 70%; /* Set a fixed height or use '70vh' for 70% of the viewport height */
+  overflow-y: auto; /* Enable scrolling */
+  margin: 0 30px;
   display: flex;
-  align-items: baseline;
-  justify-content: flex-end;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
-  overflow-y: scroll;
-  flex: 1;
-  overflow-y: auto;
-  height: 70%;
-  margin-right: 7rem;
+  padding: 10px;
+  gap: 10px;
 }
 .chatWindow .senderMsg,
 .chatWindow .recieverMsg {
-  background-color: #734c9e;
+  color: #F1F1F6;
   padding: 10px 20px;
-  width: -moz-fit-content;
-  width: fit-content;
   border-radius: 20px;
   margin-bottom: 0.3rem;
-  max-width: 80%;
-  margin: 5px 0;
+  max-width: 60%;
   word-wrap: break-word;
 }
 .chatWindow .senderMsg {
   align-self: flex-end;
+  background-color: #734c9e;
 }
 .chatWindow .recieverMsg {
   align-self: flex-start;
+  background-color: #734c9e;
 }
 
 .emojiPicker {
@@ -176,7 +179,7 @@ hr {
   left: 0;
 }
 .emojiPicker input {
-  background-color: #C9B6E4;
+  background-color: #C9B6E4; /* Adjust background color for the emoji picker input */
 }
 
 .chatInput {
@@ -185,13 +188,8 @@ hr {
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  cursor: pointer;
-}
-
-.epr_-xuzz9z {
-  background-color: #BE9FE1 !important;
 }
 
 .form_main {
@@ -356,6 +354,10 @@ hr {
     height: 100%;
     border-radius: 0;
   }
+}
+
+button {
+  cursor: pointer;
 }
 
 .left {

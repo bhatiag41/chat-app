@@ -37,7 +37,9 @@ $liner-grad: linear-gradient($purple2, $purple1);
     border-radius: 0;
 }
 }
-
+button{
+  cursor: pointer;
+}
 .left {
   grid-area: 1 / 1 / 2 / 2;
 
