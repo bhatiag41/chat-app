@@ -7,9 +7,11 @@
   .header {
     display: flex;
     justify-content: space-between;
-    margin: 0 30px;
+    // margin: 0 30px;
+   padding: 0 20px;
     align-items: center;
     color: $purple3;
+    background-color:$purple1 ;
     .backBtn {
       display: none;
       cursor: pointer;
@@ -41,7 +43,7 @@
     @include flex(center, flex-end, column);
   overflow-y: auto;
   height: 80%;
-  margin: 0 30px;
+  margin: 0 20px;
 
   .senderMsg,
   .receiverMsg {
