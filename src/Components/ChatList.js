@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IoMdSearch } from "react-icons/io";
-import { collection, getDocs, addDoc, query, orderBy, where, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, query, where, doc, getDoc, orderBy } from 'firebase/firestore';
 import { db, fetchUserDetails } from '../Firebase'; // Import fetchUserDetails from Firebase configuration
 import ChatItem from './ChatItem';
 
@@ -8,7 +8,6 @@ const ChatList = ({ currentUser, onChatSelect }) => {
   const [users, setUsers] = useState([]);
   const [chats, setChats] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [startedChats, setStartedChats] = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -75,7 +74,6 @@ const ChatList = ({ currentUser, onChatSelect }) => {
   
         // Update state with new chat using functional update
         setChats(prevChats => [...prevChats, { id: docRef.id, ...newChat }]);
-        setStartedChats(prevChats => [...prevChats, user.id]); // Mark this user as started chat with
   
         // Select this new chat
         onChatSelect(docRef.id, user); // Trigger selection of new chat
@@ -109,7 +107,7 @@ const ChatList = ({ currentUser, onChatSelect }) => {
         </div>
         {users
           .filter(user => user.name && user.name.toLowerCase().includes(searchQuery.toLowerCase()))
-          .filter(user => !startedChats.includes(user.id)) // Filter out users you have started chats with
+          .filter(user => !chats.some(chat => chat.participants.includes(user.id))) // Filter out users you have started chats with
           .map((user) => (
             <div key={user.id} className='chats' onClick={() => handleStartChat(user)}>
               <img src={user.photoURL || './avatar.png'} alt='profiles' />
@@ -125,8 +123,8 @@ const ChatList = ({ currentUser, onChatSelect }) => {
             chat={chat}
             fetchLatestMessage={fetchLatestMessage}
             currentUser={currentUser}
-            fetchParticipantNames={fetchParticipantNames}
             fetchUserDetails={fetchUserDetails} // Pass the function to ChatItem
+            onChatSelect={onChatSelect} // Pass the onChatSelect function to ChatItem
           />
         ))}
       </div>

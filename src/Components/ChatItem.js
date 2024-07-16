@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const ChatItem = ({ chat, fetchLatestMessage, currentUser, fetchParticipantNames, fetchUserDetails }) => {
+const ChatItem = ({ chat, fetchLatestMessage, currentUser, fetchUserDetails, onChatSelect }) => {
   const [latestMessage, setLatestMessage] = useState(null);
   const [receiverDetails, setReceiverDetails] = useState(null);
 
@@ -25,11 +25,16 @@ const ChatItem = ({ chat, fetchLatestMessage, currentUser, fetchParticipantNames
     fetchReceiverDetails();
   }, [chat, currentUser.uid, fetchLatestMessage, fetchUserDetails]);
 
-  return (
-    <div className='chats'>
-      <div className="user">
+  const handleClick = () => {
+    if (receiverDetails) {
+      onChatSelect(chat.id, receiverDetails);
+    }
+  };
 
-      <img src={receiverDetails?.photoURL || './default-avatar.jpg'} alt='profiles' />
+  return (
+    <div className='chats' onClick={handleClick}>
+      <div className="user">
+        <img src={receiverDetails?.photoURL || './default-avatar.jpg'} alt='profile' />
       </div>
       <div className='chatText'>
         <div className='name'>
@@ -40,7 +45,7 @@ const ChatItem = ({ chat, fetchLatestMessage, currentUser, fetchParticipantNames
         </div>
       </div>
       <div className='timeList'>
-        {latestMessage ? new Date(latestMessage.timestamp.toDate()).toLocaleTimeString() : ''}
+      {latestMessage ? new Date(latestMessage.timestamp.toDate()).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : ''}
       </div>
     </div>
   );

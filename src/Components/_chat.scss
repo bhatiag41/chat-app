@@ -1,12 +1,26 @@
 .chat {
     position: relative;
-    height: 90%;
+    height: 100%;
 }
-.window{
-    h2{
-        color: $purple3;
-    }
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 7rem ;
+    align-items: center;
+    color: $purple3;
 }
+// .window{
+//     h2{
+//         color: $purple3;
+//     }
+// }
+ .deleteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: x-large;
+    color: $purple3;
+  }
 ::-webkit-scrollbar{
     // display: none;
 }
@@ -14,8 +28,11 @@
     // bottom: 0;
     @include flex(baseline, flex-end, column);
     overflow-y: scroll;
-    height: 60%; // or a fixed height like 80vh or 500px
-    margin-right: 3rem;
+    flex: 1;
+
+    overflow-y: auto;
+    height: 70%; // or a fixed height like 80vh or 500px
+    margin-right: 7rem;
     // overflow-y: auto;
 
 
@@ -29,14 +46,22 @@
         border-radius: 20px;
         margin-bottom: 0.3rem;
         // position: relative;
+        max-width: 80%;
+        margin: 5px 0;
+        word-wrap: break-word;
     }
+
+
+
     .senderMsg {
-        align-self: flex-start;
-    }
-    .recieverMsg {
         align-self: flex-end;
     }
+    .recieverMsg {
+        
+        align-self: flex-start;  
+    }
 }
+
 .emojiPicker{
 position:absolute;
 bottom:70px;

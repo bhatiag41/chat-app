@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../Firebase';
 import EmojiPicker from 'emoji-picker-react';
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { IoSend } from "react-icons/io5";
+import { MdDelete } from "react-icons/md";
 
-const Chat = ({ user, selectedChatId, receiver }) => {
+const Chat = ({ user, selectedChatId, receiver, onDeleteChat }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
@@ -15,7 +16,7 @@ const Chat = ({ user, selectedChatId, receiver }) => {
       if (selectedChatId) {
         const q = query(collection(db, 'chats', selectedChatId, 'messages'), orderBy('timestamp'));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-          const messageList = querySnapshot.docs.map(doc => doc.data());
+          const messageList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
           setMessages(messageList);
         });
 
@@ -48,42 +49,54 @@ const Chat = ({ user, selectedChatId, receiver }) => {
     setOpenEmojiPicker(false);
   };
 
+  const deleteChat = async () => {
+    if (!selectedChatId) return;
+
+    try {
+      const chatDocRef = doc(db, 'chats', selectedChatId);
+      await deleteDoc(chatDocRef);
+      onDeleteChat(selectedChatId);
+    } catch (error) {
+      console.error('Error deleting chat:', error);
+    }
+  };
+
   return (
     <div className='chat'>
       <div className='header'>
+
         <div className='user'>
           <img src={receiver?.photoURL || './avatar.png'} alt='receiver' />
           <h2>{receiver?.name || 'Chat'}</h2>
-        </div>
       </div>
-      <div className='window'>
-
-      <div className='messages'>
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.userId === user.uid ? 'own' : 'other'}`}>
-            <p>{message.content}</p>
-          </div>
-        ))}
+        <button onClick={deleteChat} className='deleteBtn'>
+        <MdDelete />
+        </button>
       </div>
+      <div className='chatWindow'>
+          {messages.map((message, index) => (
+            <div key={index} className={`${message.userId === user.uid ? 'senderMsg' : 'recieverMsg'}`}>
+              {message.content}
+            </div>
+          ))}
+  
       </div>
       <div className='emojiPicker'>
         {openEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick} />}
       </div>
-      <div    className='chatInput'>
-
-      <div className='searchbar'>
-        <MdOutlineEmojiEmotions onClick={() => setOpenEmojiPicker(prev => !prev)} />
-        <input
-          type='text'
-          
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder='Enter your message...'
+      <div className='chatInput'>
+        <div className='searchbar'>
+          <MdOutlineEmojiEmotions onClick={() => setOpenEmojiPicker(prev => !prev)} />
+          <input
+            type='text'
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder='Enter your message...'
           />
-        <button style={{background:"transparent",border:"none"}} onClick={sendMessage}>
-          <IoSend />
-        </button>
-          </div>
+          <button style={{ background: "transparent", border: "none" }} onClick={sendMessage}>
+            <IoSend />
+          </button>
+        </div>
       </div>
     </div>
   );

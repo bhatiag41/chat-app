@@ -1,42 +1,58 @@
-$white1:#F1F1F6;
-$white2:#E1CCEC;
-$purple1:#C9B6E4;
-$purple2:#BE9FE1;
-$purple3:#734c9e;
-$extra:#EECEB9;
-@import"./Components/_user.scss";
-@import"./Components/_chatlist.scss";
-@import"./Components/_chat.scss";
-@import"./Components/_login.scss";
+$white1: #F1F1F6;
+$white2: #E1CCEC;
+$purple1: #C9B6E4;
+$purple2: #BE9FE1;
+$purple3: #734c9e;
+$extra: #EECEB9;
 
-$liner-grad:linear-gradient($purple2, $purple1 );
+@import "./Components/_user.scss";
+@import "./Components/_chatlist.scss";
+@import "./Components/_chat.scss";
+@import "./Components/_login.scss";
 
+$liner-grad: linear-gradient($purple2, $purple1);
 
-.container{
+.container {
   background: $purple1;
   width: 100vw;
   height: 100vh;
-@include flex(space-between,center,column);
+  @include flex(space-between, center, column);
   color: $white1;
 }
-.inner{
 
+.inner {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 0px;
   background-color: $white2;
-  width:100%;
+  width: 100%;
   height: 90%;
-  // align-self: center;
   border-radius: 20px;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 0;
 }
-.left{
-  grid-area: 1 / 1 / 2 / 2;
 }
-.right{
-  grid-area: 1 / 2 / 2 / 3;
-  // grid-template-columns: minmax(100%);
 
+.left {
+  grid-area: 1 / 1 / 2 / 2;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 50%;
+  }
 }
+
+.right {
+  grid-area: 1 / 2 / 2 / 3;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 50%;
+  }
+}
+  

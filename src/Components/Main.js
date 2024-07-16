@@ -9,7 +9,7 @@ const Main = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [selectedChatId, setSelectedChatId] = useState(null);
   const [receiver, setReceiver] = useState(null);
-
+  const [chats, setChats] = useState([]);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -23,6 +23,12 @@ const Main = () => {
     console.log(user);
   };
 
+  const handleDeleteChat = (chatId) => {
+    setChats(prevChats => prevChats.filter(chat => chat.id !== chatId));
+    setSelectedChatId(null);
+    setReceiver(null);
+  };
+
   return (
     <>
       <User currentUser={currentUser} />
@@ -32,7 +38,7 @@ const Main = () => {
         </div>
         <div className='right'>
           {selectedChatId ? (
-            <Chat user={currentUser} selectedChatId={selectedChatId} receiver={receiver} />
+            <Chat user={currentUser} selectedChatId={selectedChatId} receiver={receiver} onDeleteChat={handleDeleteChat} />
           ) : (
             <div>Select a chat to start messaging</div>
           )}

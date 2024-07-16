@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../Firebase';
-
+import { IoLogOut } from "react-icons/io5";
 const User = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -46,9 +46,9 @@ const User = () => {
         <h2>{user.displayName || user.email}</h2>
       </div>
       <div className='icons'>
-        <img src='./more.png' alt='more' />
-        <button onClick={handleLogout} className='logoutButton'>
-          Logout
+        
+        <button className='deleteBtn' onClick={handleLogout}>
+        <IoLogOut />
         </button>
       </div>
     </div>
