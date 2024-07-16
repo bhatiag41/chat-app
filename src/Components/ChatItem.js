@@ -34,7 +34,7 @@ const ChatItem = ({ chat, fetchLatestMessage, currentUser, fetchUserDetails, onC
   return (
     <div className='chats' onClick={handleClick}>
       <div className="user">
-        <img src={receiverDetails?.photoURL || './default-avatar.jpg'} alt='profile' />
+        <img src={receiverDetails?.photoURL || './avatar.png'} alt='profile' />
       </div>
       <div className='chatText'>
         <div className='name'>
