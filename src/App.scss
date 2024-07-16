@@ -18,6 +18,7 @@ $liner-grad: linear-gradient($purple2, $purple1);
   height: 100vh;
   @include flex(space-between, center, column);
   color: $white1;
+  scroll-behavior: smooth ;
 }
 .hidden{
   @media (max-width: 768px) {

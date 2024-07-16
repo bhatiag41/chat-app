@@ -346,6 +346,7 @@ hr {
   justify-content: center;
   flex-direction: column;
   color: #F1F1F6;
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 768px) {
