@@ -123,6 +123,7 @@ hr {
 .chat {
   position: relative;
   height: 100%;
+  width: 100%;
 }
 
 .header {
@@ -131,6 +132,16 @@ hr {
   margin: 0 30px;
   align-items: center;
   color: #734c9e;
+}
+.header .backBtn {
+  display: none;
+  cursor: pointer;
+  font-size: x-large;
+}
+@media (max-width: 768px) {
+  .header .backBtn {
+    display: inline;
+  }
 }
 
 .deleteBtn {
@@ -145,51 +156,46 @@ hr {
 }
 
 .chatWindow {
-  height: 70%; /* Set a fixed height or use '70vh' for 70% of the viewport height */
-  overflow-y: auto; /* Enable scrolling */
-  margin: 0 30px;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-end;
   flex-direction: column;
-  padding: 10px;
-  gap: 10px;
+  overflow-y: auto;
+  height: 80%;
+  margin: 0 30px;
 }
 .chatWindow .senderMsg,
-.chatWindow .recieverMsg {
-  color: #F1F1F6;
+.chatWindow .receiverMsg {
+  background-color: #734c9e;
   padding: 10px 20px;
   border-radius: 20px;
-  margin-bottom: 0.3rem;
+  margin-bottom: 10px;
+  color: #F1F1F6;
+  width: -moz-fit-content;
+  width: fit-content;
   max-width: 60%;
   word-wrap: break-word;
 }
 .chatWindow .senderMsg {
   align-self: flex-end;
-  background-color: #734c9e;
 }
-.chatWindow .recieverMsg {
+.chatWindow .receiverMsg {
   align-self: flex-start;
-  background-color: #734c9e;
 }
 
 .emojiPicker {
   position: absolute;
-  bottom: 70px;
-  left: 0;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .emojiPicker input {
   background-color: #C9B6E4; /* Adjust background color for the emoji picker input */
 }
 
 .chatInput {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .form_main {
@@ -336,6 +342,12 @@ hr {
   color: #F1F1F6;
 }
 
+@media (max-width: 768px) {
+  .hidden {
+    display: none !important;
+  }
+}
+
 .inner {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -355,17 +367,27 @@ hr {
     border-radius: 0;
   }
 }
+.inner.chat-visible .right {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .chat-visible .left {
+    display: none;
+  }
+}
 
 button {
   cursor: pointer;
 }
 
 .left {
+  width: 100%;
   grid-area: 1/1/2/2;
 }
 @media (max-width: 768px) {
   .left {
-    width: 100%;
     height: 50%;
   }
 }
@@ -376,6 +398,6 @@ button {
 @media (max-width: 768px) {
   .right {
     width: 100%;
-    height: 50%;
+    height: 100%;
   }
 }/*# sourceMappingURL=App.css.map */

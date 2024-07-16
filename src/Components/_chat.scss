@@ -1,6 +1,7 @@
 .chat {
     position: relative;
     height: 100%;
+    width: 100%;
   }
   
   .header {
@@ -9,8 +10,16 @@
     margin: 0 30px;
     align-items: center;
     color: $purple3;
-  }
+    .backBtn {
+      display: none;
+      cursor: pointer;
+      font-size: x-large;
   
+      @media (max-width: 768px) {
+        display: inline;
+      }
+  }
+}
   .deleteBtn {
     background: none;
     border: none;
@@ -23,54 +32,54 @@
   }
   
   .chatWindow {
-    height: 70%; /* Set a fixed height or use '70vh' for 70% of the viewport height */
-    overflow-y: auto; /* Enable scrolling */
-    margin: 0 30px;
-    @include flex(flex-start,flex-start,column);
-    padding: 10px;
-    gap: 10px;
-  
-    .senderMsg,
-    .recieverMsg {
-        color: $white1;
-        padding: 10px 20px;
-        border-radius: 20px;
-        margin-bottom: 0.3rem;
-        max-width: 60%;
-        word-wrap: break-word;
-  
-      
-    }
-  
-    .senderMsg {
-        align-self: flex-end;
-        background-color: $purple3;
- 
-      }
-    
-      .recieverMsg {
-        align-self: flex-start;
-        background-color: $purple3;
-      }
-    
+    // height: 70%; /* Set a fixed height or use '70vh' for 70% of the viewport height */
+    // overflow-y: auto; /* Enable scrolling */
+    // margin: 0 30px;
+    // @include flex(flex-start,flex-start,column);
+    // padding: 10px;
+    // gap: 10px;
+    @include flex(center, flex-end, column);
+  overflow-y: auto;
+  height: 80%;
+  margin: 0 30px;
+
+  .senderMsg,
+  .receiverMsg {
+    background-color: $purple3;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    color: $white1;
+    width: fit-content;
+    max-width: 60%;
+    word-wrap: break-word;
   }
-  
+
+  .senderMsg {
+    align-self: flex-end;
+  }
+
+  .receiverMsg {
+    align-self: flex-start;
+  }
+}
+
   .emojiPicker {
     position: absolute;
-    bottom: 70px;
-    left: 0;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
     input {
       background-color: $purple1; /* Adjust background color for the emoji picker input */
     }
   }
   
   .chatInput {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    // padding: 0 10px;
+    // background: $white2;
+    // border-top: 1px solid $purple3;
+    // margin: 0 30px;
   }
   

@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../Firebase';
 import EmojiPicker from 'emoji-picker-react';
-import { MdOutlineEmojiEmotions } from "react-icons/md";
+import { MdOutlineEmojiEmotions, MdDelete, MdArrowBack } from "react-icons/md";
 import { IoSend } from "react-icons/io5";
-import { MdDelete } from "react-icons/md";
 
-const Chat = ({ user, selectedChatId, receiver, onDeleteChat }) => {
+const Chat = ({ user, selectedChatId, receiver, onDeleteChat, onBackToList }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
@@ -64,25 +63,24 @@ const Chat = ({ user, selectedChatId, receiver, onDeleteChat }) => {
   return (
     <div className='chat'>
       <div className='header'>
-
         <div className='user'>
+          <MdArrowBack className='backBtn' onClick={onBackToList} />
           <img src={receiver?.photoURL || './avatar.png'} alt='receiver' />
           <h2>{receiver?.name || 'Chat'}</h2>
-      </div>
+        </div>
         <button onClick={deleteChat} className='deleteBtn'>
-        <MdDelete />
+          <MdDelete />
         </button>
       </div>
       <div className='chatWindow'>
-          {messages.map((message, index) => (
-            <div key={index} className={`${message.userId === user.uid ? 'senderMsg' : 'recieverMsg'}`}>
-              {message.content}
-            </div>
-          ))}
-  
+        {messages.map((message, index) => (
+          <div key={index} className={`${message.userId === user.uid ? 'senderMsg' : 'receiverMsg'}`}>
+            {message.content}
+          </div>
+        ))}
       </div>
       <div className='emojiPicker'>
-        {openEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick}  style={{backgroundColor:"#BE9FE1"}}/>}
+        {openEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiClick} style={{ backgroundColor: "#BE9FE1" }} />}
       </div>
       <div className='chatInput'>
         <div className='searchbar'>
@@ -92,7 +90,6 @@ const Chat = ({ user, selectedChatId, receiver, onDeleteChat }) => {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder='Enter your message...'
-
           />
           <button style={{ background: "transparent", border: "none" }} onClick={sendMessage}>
             <IoSend />

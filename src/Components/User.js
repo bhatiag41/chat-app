@@ -36,7 +36,7 @@ const User = () => {
   };
 
   if (!user) {
-    return <p>Loading user information...</p>;
+    return <p>User</p>;
   }
 
   return (
