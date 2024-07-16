@@ -94,7 +94,7 @@ const ChatList = ({ currentUser, onChatSelect }) => {
   };
 
   return (
-    <div>
+    <>
       <div className='list'>
         <div className='searchbar'>
           <IoMdSearch />
@@ -128,7 +128,7 @@ const ChatList = ({ currentUser, onChatSelect }) => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

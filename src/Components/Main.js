@@ -66,7 +66,7 @@ const Main = () => {
               onBackToList={handleBackToList} 
             />
           ) : (
-            <div>Select a chat to start messaging</div>
+            <div className='text'>Select a chat to start messaging</div>
           )}
         </div>
       </div>

@@ -1,5 +1,6 @@
 .chat {
-    position: relative;
+    position:fixed;
+    overflow-y: auto;
     height: 100%;
     width: 100%;
   }
@@ -7,9 +8,11 @@
   .header {
     display: flex;
     justify-content: space-between;
+    position:sticky;
+    top:0;
     // margin: 0 30px;
    padding: 0 20px;
-    align-items: center;
+    align-items: baseline;
     color: $purple3;
     background-color:$purple1 ;
     .backBtn {
@@ -40,9 +43,9 @@
     // @include flex(flex-start,flex-start,column);
     // padding: 10px;
     // gap: 10px;
-    @include flex(center, flex-end, column);
+    @include flex(center, flex-start ,column);
   overflow-y: auto;
-  height: 80%;
+  height: 100%;
   margin: 0 20px;
 
   .senderMsg,
@@ -77,8 +80,11 @@
   }
   
   .chatInput {
+    position:sticky;
+    bottom: 0 !important;
     display: flex;
     justify-content: center;
+
     // padding: 0 10px;
     // background: $white2;
     // border-top: 1px solid $purple3;

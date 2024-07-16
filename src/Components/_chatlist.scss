@@ -1,7 +1,7 @@
 .list{
     @include flex(center,center,column);
     max-width: 500px;
-
+    border-radius: 30px;
     @if(width==500px){
         align-items:flex-start;
         // margin-left: 20px;
@@ -13,13 +13,13 @@ hr{
     border-radius: 50%;
 }
 .searchbar{
-    margin:10px 0;
+    // margin:10px 0;
     background: $white1;
     // padding: 15px;
     display: flex;
     border-radius: 30px;
     gap: 10px;
-    width: 95%;
+    width: 100%;
     align-items: center;
 
 
