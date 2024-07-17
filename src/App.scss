@@ -45,7 +45,7 @@ display: none !important;
   }
 
   .text{
-    @include flex(center, center, column);
+    @include flex(center, flex-end, column);
     height: auto;
     color: $purple3;
   }

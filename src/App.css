@@ -380,7 +380,7 @@ hr {
 .inner .text {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column;
   height: auto;
   color: #734c9e;
