@@ -404,11 +404,6 @@ button {
   width: 100%;
   grid-area: 1/1/2/2;
 }
-@media (max-width: 768px) {
-  .left {
-    height: 50%;
-  }
-}
 
 .right {
   grid-area: 1/2/2/3;
