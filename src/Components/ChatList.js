@@ -38,22 +38,6 @@ const ChatList = ({ currentUser, onChatSelect }) => {
     fetchChats();
   }, [currentUser]);  // Fetch users and chats when currentUser changes
 
-  // Function to fetch participant names
-  const fetchParticipantNames = async (participantIds) => {
-    const participantNames = [];
-
-    for (const id of participantIds) {
-      const userDoc = await getDoc(doc(db, 'users', id));
-      if (userDoc.exists()) {
-        participantNames.push(userDoc.data().name);
-      } else {
-        participantNames.push('Unknown'); // Handle case where user document doesn't exist
-      }
-    }
-
-    return participantNames;
-  };
-
   const handleStartChat = async (user) => {
     if (!currentUser || !currentUser.uid || !user || !user.id) {
       console.error('Invalid user or currentUser');
@@ -117,16 +101,24 @@ const ChatList = ({ currentUser, onChatSelect }) => {
               </div>
             </div>
           ))}
-        {chats.map((chat, index) => (
-          <ChatItem
-            key={index}
-            chat={chat}
-            fetchLatestMessage={fetchLatestMessage}
-            currentUser={currentUser}
-            fetchUserDetails={fetchUserDetails} // Pass the function to ChatItem
-            onChatSelect={onChatSelect} // Pass the onChatSelect function to ChatItem
-          />
-        ))}
+        {chats
+          .filter(chat => {
+            const participantNames = chat.participants.map(participant => {
+              const participantUser = users.find(user => user.id === participant);
+              return participantUser ? participantUser.name : 'Unknown';
+            });
+            return participantNames.some(name => name.toLowerCase().includes(searchQuery.toLowerCase()));
+          })
+          .map((chat, index) => (
+            <ChatItem
+              key={index}
+              chat={chat}
+              fetchLatestMessage={fetchLatestMessage}
+              currentUser={currentUser}
+              fetchUserDetails={fetchUserDetails} // Pass the function to ChatItem
+              onChatSelect={onChatSelect} // Pass the onChatSelect function to ChatItem
+            />
+          ))}
       </div>
     </>
   );
