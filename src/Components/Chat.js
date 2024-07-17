@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../Firebase';
 import EmojiPicker from 'emoji-picker-react';
@@ -9,6 +9,7 @@ const Chat = ({ user, selectedChatId, receiver, onDeleteChat, onBackToList }) =>
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
+  const latestMessageRef = useRef(null);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -25,6 +26,12 @@ const Chat = ({ user, selectedChatId, receiver, onDeleteChat, onBackToList }) =>
 
     fetchMessages();
   }, [selectedChatId]);
+
+  useEffect(() => {
+    if (latestMessageRef.current) {
+      latestMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   const sendMessage = async () => {
     try {
@@ -74,7 +81,11 @@ const Chat = ({ user, selectedChatId, receiver, onDeleteChat, onBackToList }) =>
       </div>
       <div className='chatWindow'>
         {messages.map((message, index) => (
-          <div key={index} className={`${message.userId === user.uid ? 'senderMsg' : 'receiverMsg'}`}>
+          <div 
+            key={index} 
+            className={`${message.userId === user.uid ? 'senderMsg' : 'receiverMsg'}`}
+            ref={index === messages.length - 1 ? latestMessageRef : null}
+          >
             {message.content}
           </div>
         ))}

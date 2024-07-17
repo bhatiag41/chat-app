@@ -123,6 +123,8 @@ hr {
 .chat {
   position: fixed;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 }
@@ -156,7 +158,7 @@ hr {
 }
 
 ::-webkit-scrollbar {
-  display: none; /* Hide the scrollbar */
+  display: none;
 }
 
 .chatWindow {
@@ -164,9 +166,10 @@ hr {
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  flex: 1;
   overflow-y: auto;
-  height: 100%;
-  margin: 0 20px;
+  height: auto;
+  margin: 20px;
 }
 .chatWindow .senderMsg,
 .chatWindow .receiverMsg {
@@ -194,7 +197,7 @@ hr {
   transform: translateX(-50%);
 }
 .emojiPicker input {
-  background-color: #C9B6E4; /* Adjust background color for the emoji picker input */
+  background-color: #C9B6E4;
 }
 
 .chatInput {
@@ -216,7 +219,7 @@ hr {
   position: relative;
   overflow: hidden;
   height: 100%;
-  max-width: 300px;
+  max-width: 350px;
 }
 
 .form_main::before {

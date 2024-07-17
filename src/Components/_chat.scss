@@ -1,6 +1,8 @@
 .chat {
     position:fixed;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
   }
@@ -33,20 +35,17 @@
   }
   
   ::-webkit-scrollbar {
-    display: none; /* Hide the scrollbar */
+    display: none; 
   }
   
   .chatWindow {
-    // height: 70%; /* Set a fixed height or use '70vh' for 70% of the viewport height */
-    // overflow-y: auto; /* Enable scrolling */
-    // margin: 0 30px;
-    // @include flex(flex-start,flex-start,column);
-    // padding: 10px;
-    // gap: 10px;
+    
     @include flex(center, flex-start ,column);
+    flex: 1;
   overflow-y: auto;
-  height: 100%;
-  margin: 0 20px;
+  height: auto;
+  margin: 20px;
+  // margin:0 20px;
 
   .senderMsg,
   .receiverMsg {
@@ -75,19 +74,17 @@
     left: 50%;
     transform: translateX(-50%);
     input {
-      background-color: $purple1; /* Adjust background color for the emoji picker input */
+      background-color: $purple1; 
     }
   }
   
   .chatInput {
     position:sticky;
     bottom: 0 !important;
+    // top: 100%;
     display: flex;
     justify-content: center;
 
-    // padding: 0 10px;
-    // background: $white2;
-    // border-top: 1px solid $purple3;
-    // margin: 0 30px;
+   
   }
   
