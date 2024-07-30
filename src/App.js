@@ -23,7 +23,7 @@ const App = () => {
     return () => unsubscribe();
   }, []);
 
-  if (!loading) {
+  if (loading) {
     return <Loader />; // Display the loader while loading
   }
 

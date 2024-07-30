@@ -1,0 +1,34 @@
+[debug] [2024-07-30T14:03:28.936Z] ----------------------------------------------------------------------
+[debug] [2024-07-30T14:03:28.944Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\bhati\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-07-30T14:03:28.944Z] CLI Version:   13.13.3
+[debug] [2024-07-30T14:03:28.944Z] Platform:      win32
+[debug] [2024-07-30T14:03:28.945Z] Node Version:  v20.15.1
+[debug] [2024-07-30T14:03:28.946Z] Time:          Tue Jul 30 2024 19:33:28 GMT+0530 (India Standard Time)
+[debug] [2024-07-30T14:03:28.947Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-30T14:03:28.952Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-07-30T14:03:29.050Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-30T14:03:29.050Z] > authorizing via signed-in user (smsbirla8@gmail.com)
+[debug] [2024-07-30T14:03:29.050Z] [iam] checking project chat-app-7ceec for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-07-30T14:03:29.051Z] > refreshing access token with scopes: []
+[debug] [2024-07-30T14:03:29.052Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-07-30T14:03:29.052Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-07-30T14:03:29.322Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-07-30T14:03:29.322Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-07-30T14:03:29.330Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/chat-app-7ceec:testIamPermissions [none]
+[debug] [2024-07-30T14:03:29.330Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/chat-app-7ceec:testIamPermissions x-goog-quota-user=projects/chat-app-7ceec
+[debug] [2024-07-30T14:03:29.330Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/chat-app-7ceec:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-07-30T14:03:29.787Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-07-30T14:03:29.787Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-07-30T14:03:31.146Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/chat-app-7ceec:testIamPermissions 200
+[debug] [2024-07-30T14:03:31.146Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/chat-app-7ceec:testIamPermissions {}
+[debug] [2024-07-30T14:03:31.147Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project chat-app-7ceec:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-07-30T14:03:31.149Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/chat-app-7ceec [none]
+[debug] [2024-07-30T14:03:31.937Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/chat-app-7ceec 403
+[debug] [2024-07-30T14:03:31.937Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/chat-app-7ceec {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-07-30T14:03:31.938Z] HTTP Error: 403, The caller does not have permission
+[error] 
+[error] Error: Assertion failed: resolving hosting target of a site with no site name or target name. This should have caused an error earlier
