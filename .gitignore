@@ -27,4 +27,4 @@ firebase.json
 .firebaserc
 firestore.indexes.json
 firestore.rules
-./.firebase
+.firebase
