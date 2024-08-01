@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: auto;
+    // margin: auto;
     justify-content: center;
     background-color: $purple1;
     // padding: 30px 0px 30px 30px;
@@ -12,7 +12,8 @@
     position: relative;
     overflow: hidden;
 height: 100%;
-max-width: 350px;
+box-sizing: border-box;
+// width: 350px;
       
   }
   
