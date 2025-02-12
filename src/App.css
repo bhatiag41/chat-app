@@ -35,8 +35,16 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 100%;
+  width: 100%;
   border-radius: 30px;
+  padding: 0;
+  overflow-x: hidden;
+}
+@media (min-width: 500px) {
+  .list {
+    align-items: flex-start;
+  }
 }
 
 hr {
@@ -83,20 +91,26 @@ hr {
   align-items: stretch;
   justify-content: flex-start;
   flex-direction: row;
-  gap: 10px;
+  gap: 0.625rem;
   width: 100%;
   background-color: #E1CCEC;
   overflow-x: hidden;
   color: #BE9FE1;
-  padding: 15px 0;
+  padding: 0.9375rem 0;
   position: relative;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.chats:hover {
+  background-color: #d6b9e5;
 }
 .chats img {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
-  margin-left: 10px;
+  margin-left: 0.625rem;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .chats .chatText {
   display: flex;
@@ -104,28 +118,36 @@ hr {
   justify-content: space-around;
   flex-direction: column;
   overflow-x: hidden;
+  flex: 1;
 }
 .chats .chatText .name {
   font-weight: 700;
   font-size: 1em;
   color: #734c9e;
-  overflow-x: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .chats .timeList {
   position: absolute;
-  left: 80%;
-  top: 10%;
+  right: 1rem;
+  top: 0.625rem;
   color: #BE9FE1;
-  text-wrap: nowrap;
-  font-size: 14px;
+  white-space: nowrap;
+  font-size: 0.875rem;
+}
+@media (max-width: 400px) {
+  .chats .timeList {
+    font-size: 0.75rem;
+  }
 }
 
 .chat {
   position: fixed;
-  overflow-y: auto;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   width: 100%;
 }
 
@@ -168,8 +190,9 @@ hr {
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
-  height: auto;
+  height: calc(100vh - 140px);
   margin: 20px;
+  padding-bottom: 20px;
 }
 .chatWindow .senderMsg,
 .chatWindow .receiverMsg {
@@ -195,6 +218,7 @@ hr {
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 3;
 }
 .emojiPicker input {
   background-color: #C9B6E4;
@@ -202,9 +226,12 @@ hr {
 
 .chatInput {
   position: sticky;
-  bottom: 0 !important;
+  bottom: 0;
   display: flex;
   justify-content: center;
+  background-color: #C9B6E4;
+  padding: 10px 0;
+  margin-top: auto;
 }
 
 .form_main {

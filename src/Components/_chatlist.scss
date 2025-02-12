@@ -1,10 +1,13 @@
 .list{
     @include flex(center,center,column);
-    max-width: 500px;
+    max-width: 100%;
+    width: 100%;
     border-radius: 30px;
-    @if(width==500px){
-        align-items:flex-start;
-        // margin-left: 20px;
+    padding: 0;
+    overflow-x: hidden;
+    
+    @media (min-width: 500px) {
+        align-items: flex-start;
     }
 }
 hr{
@@ -50,38 +53,53 @@ hr{
 
 .chats{
     @include flex(stretch,flex-start,row);
-    gap:10px;
+    gap: 0.625rem;
     width: 100%;
     background-color: $white2;
     overflow-x: hidden;
-color: $purple2;
-    padding: 15px 0;
-    // border-radius: 30px;
+    color: $purple2;
+    padding: 0.9375rem 0;
     position: relative;
-   cursor: pointer;
-    img{
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        margin-left: 10px
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    
+    &:hover{
+        background-color: darken($white2, 5%);
     }
+    
+    img{
+        width: 3.125rem;
+        height: 3.125rem;
+        border-radius: 50%;
+        margin-left: 0.625rem;
+        object-fit: cover;
+    }
+    
     .chatText{
         @include flex(flex-start,space-around,column);
-        // text-wrap: nowrap;
         overflow-x: hidden;
+        flex: 1;
+        
         .name{
             font-weight: 700;
             font-size: 1em;
             color: $purple3;
-            overflow-x: hidden;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
+    
     .timeList{
-        position: absolute; 
-        left:80%;
-        top: 10%;
-      color: $purple2;
-        text-wrap: nowrap;
-        font-size: 14px
+        position: absolute;
+        right: 1rem;
+        top: 0.625rem;
+        color: $purple2;
+        white-space: nowrap;
+        font-size: 0.875rem;
+        
+        @media (max-width: 400px) {
+            font-size: 0.75rem;
+        }
     }
 }
